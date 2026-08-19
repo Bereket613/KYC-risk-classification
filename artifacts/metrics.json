@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-08-19T21:10:51.713329+00:00",
+  "test_samples": 6177,
+  "accuracy": 0.9847822567589445,
+  "balanced_accuracy": 0.9809305303269716,
+  "macro_precision": 0.981501317611952,
+  "macro_recall": 0.9809305303269716,
+  "macro_f1": 0.9812147241170209,
+  "weighted_f1": 0.9847755108661578,
+  "macro_roc_auc_ovr": 0.9988151082853586,
+  "class_distribution_test": {
+    "0": 0.4792,
+    "2": 0.3184,
+    "1": 0.2024
+  },
+  "ordinal_error_analysis": {
+    "total_misclassifications": 94,
+    "adjacent_tier_errors": 86,
+    "severe_errors": 8,
+    "adjacent_pct": 91.49,
+    "severe_pct": 8.51
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "risk_map": {
+    "Low": 0,
+    "Medium": 1,
+    "High": 2
+  },
+  "label_names": [
+    "Low",
+    "Medium",
+    "High"
+  ]
+}

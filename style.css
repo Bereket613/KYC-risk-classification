@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
+:root {
+    --bg-white: #FFFFFF;
+    --bg-panel: #FAFAF8;
+    --ink-blueblack: #0E1626;
+    --ink-muted: #4A5568;
+    --yellow-signal: #F5C518;
+    --yellow-tint: #FFF6D9;
+    --hairline: #E2E5EA;
+    --risk-low: #1E7A4C;
+    --risk-medium: #8A6D0E;
+    --risk-high: #B23A3A;
+}
+
+/* Force light mode background & ink text */
+.stApp {
+    background-color: var(--bg-white);
+    color: var(--ink-blueblack);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* Hide Streamlit default header */
+header[data-testid="stHeader"] {
+    display: none;
+}
+.block-container {
+    padding-top: 1rem !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm, .st-emotion-cache-1y5c6jw {
+    font-family: 'Source Serif 4', serif !important;
+    color: var(--ink-blueblack) !important;
+}
+
+/* Number displays */
+.tabular-mono, .stMetric, .dataframe {
+    font-family: 'IBM Plex Mono', monospace !important;
+}
+
+/* Base text overrides */
+p, span, div, label, li {
+    color: var(--ink-blueblack);
+}
+
+/* Header bar */
+.top-header-bar {
+    background-color: var(--ink-blueblack);
+    color: var(--bg-white);
+    padding: 1rem 2rem;
+    margin: -1rem -4rem 2rem -4rem; /* Stretch across the main area */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Source Serif 4', serif;
+}
+.top-header-bar h1 {
+    color: var(--bg-white) !important;
+    margin: 0;
+    font-size: 1.8rem;
+}
+.live-indicator {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--bg-white);
+}
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--yellow-signal);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 2rem;
+    border-bottom: 1px solid var(--hairline);
+}
+.stTabs [data-baseweb="tab"] {
+    height: 3rem;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+    color: var(--ink-muted) !important;
+    border-bottom: 3px solid transparent;
+}
+.stTabs [aria-selected="true"] {
+    border-bottom: 3px solid var(--yellow-signal) !important;
+    background-color: transparent !important;
+}
+.stTabs [aria-selected="true"] p, .stTabs [aria-selected="true"] span {
+    color: var(--ink-blueblack) !important;
+    font-weight: 600;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: var(--yellow-signal);
+    color: var(--ink-blueblack) !important;
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+.stButton > button p {
+    color: var(--ink-blueblack) !important;
+}
+.stButton > button:hover {
+    background-color: #E5B510;
+}
+.stButton > button:focus, input:focus, select:focus {
+    outline: 2px solid var(--yellow-signal) !important;
+    outline-offset: 2px;
+}
+
+/* Gauge Component */
+.risk-gauge-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.risk-gauge-track {
+    display: flex;
+    height: 12px;
+    width: 100%;
+    border-radius: 6px;
+    background: var(--bg-white);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+}
+.risk-zone-low { width: 33.33%; background-color: var(--risk-low); }
+.risk-zone-medium { width: 33.33%; background-color: var(--yellow-tint); }
+.risk-zone-high { width: 33.33%; background-color: var(--risk-high); }
+
+.risk-marker {
+    position: absolute;
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid var(--ink-blueblack);
+    transform: translateX(-50%);
+    z-index: 10;
+    filter: drop-shadow(0 0 4px var(--yellow-signal));
+}
+@media (prefers-reduced-motion: no-preference) {
+    .risk-marker {
+        transition: left 0.4s ease-out;
+    }
+}
+.risk-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-blueblack);
+}
+.risk-labels .highlight {
+    color: #B8901A; /* Darkened yellow signal for contrast on white */
+    font-weight: 700;
+}
+
+/* Ledger Table */
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 1rem;
+}
+.ledger-table th, .ledger-table td {
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--hairline);
+    text-align: left;
+    color: var(--ink-blueblack);
+}
+.ledger-table th {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    color: var(--ink-blueblack);
+}
+.ledger-table td:last-child {
+    text-align: right;
+}
+.ledger-table tr:hover {
+    background-color: var(--yellow-tint);
+}
+
+.risk-badge-low { color: var(--risk-low) !important; font-weight: 600; }
+.risk-badge-medium { color: var(--risk-medium) !important; font-weight: 600; }
+.risk-badge-high { color: var(--risk-high) !important; font-weight: 600; }
+
+/* Fieldsets */
+.fieldset-container {
+    border: 1px solid var(--hairline);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    background-color: var(--bg-panel);
+}
+.fieldset-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--ink-blueblack);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 0.5rem;
+}
+.field-caption {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.75rem !important;
+    color: var(--ink-muted) !important;
+    margin-top: -12px !important;
+    margin-bottom: 12px !important;
+    display: block;
+    line-height: 1.3;
+}
+
+/* Hero metric */
+.hero-metric {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #B8901A;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+.hero-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-blueblack);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Sidebar overrides */
+[data-testid="stSidebar"] {
+    background-color: var(--bg-white) !important;
+    border-right: 1px solid var(--hairline);
+}
+[data-testid="stSidebar"] p {
+    color: var(--ink-muted) !important;
+}
+[data-testid="stSidebar"] span {
+    color: var(--ink-blueblack) !important;
+}
